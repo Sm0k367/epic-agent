@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="/" />
+<style>
+  body {
+    font-family: monospace;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 2rem;
+  }
+
+  .folder {
+    margin-left: 20px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .folder:before {
+    content: "📁";
+    position: absolute;
+    left: -20px;
+  }
+
+  .file {
+    margin-left: 20px;
+    position: relative;
+  }
+
+  .file:before {
+    content: "📄";
+    position: absolute;
+    left: -20px;
+  }
+
+  .folder-name {
+    color: #569cd6;
+    font-weight: bold;
+  }
+
+  .file-name {
+    color: #ce9178;
+  }
+
+  .tree-line {
+    position: absolute;
+    left: -15px;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid #666;
+  }
+
+  .project-info {
+    background: #2d2d2d;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+  }
+
+  .tech-stack {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .tech-badge {
+    background: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.9em;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .tech-badge:hover {
+    background: #444;
+    transform: translateY(-2px);
+  }
+
+    .folder-content {
+    display: none;
+    margin-left: 20px;
+  }
+
+  .folder.expanded > .folder-content {
+    display: block;
+  }
+
+  .code-preview {
+    background: #1a1a1a;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .file:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div id="project-structure">
+  <h1>📊 Smoke-Stream Project Structure</h1>
+
+  <div class="folder expanded">
+    <span class="folder-name">Smoke-Stream/</span>
+    <div class="folder-content">
+      <div class="folder">
+        <span class="folder-name">backend/</span>
+        <div class="folder-content">
+          <div class="file"><span class="file-name">server.js</span></div>
+
+          <div class="folder">
+            <span class="folder-name">routes/</span>
+            <div class="folder-content">
+              <div class="file"><span class="file-name">tech.js</span></div>
+              <div class="file"><span class="file-name">music.js</span></div>
+              <div class="file"><span class="file-name">video.js</span></div>
+            </div>
+          </div>
+
+          <div class="folder">
+            <span class="folder-name">models/</span>
+            <div class="folder-content">
+              <div class="file"><span class="file-name">TechArticle.js</span></div>
+              <div class="file"><span class="file-name">Music.js</span></div>
+              <div class="file"><span class="file-name">Video.js</span></div>
+            </div>
+          </div>
+
+          <div class="folder">
+            <span class="folder-name">controllers/</span>
+            <div class="folder-content">
+              <div class="file"><span class="file-name">techController.js</span></div>
+              <div class="file"><span class="file-name">musicController.js</span></div>
+              <div class="file"><span class="file-name">videoController.js</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="folder">
+        <span class="folder-name">frontend/</span>
+        <div class="folder-content">
+          <div class="folder">
+            <span class="folder-name">public/</span>
+            <div class="folder-content">
+              <div class="file"><span class="file-name">index.html</span></div>
+            </div>
+          </div>
+
+          <div class="folder">
+            <span class="folder-name">src/</span>
+            <div class="folder-content">
+              <div class="file"><span class="file-name">App.js</span></div>
+              <div class="file"><span class="file-name">index.js</span></div>
+
+              <div class="folder">
+                <span class="folder-name">components/</span>
+                <div class="folder-content">
+                  <div class="file"><span class="file-name">Header.js</span></div>
+                  <div class="file"><span class="file-name">Footer.js</span></div>
+                  <div class="file"><span class="file-name">TechList.js</span></div>
+                  <div class="file"><span class="file-name">MusicPlayer.js</span></div>
+                  <div class="file"><span class="file-name">VideoPlayer.js</span></div>
+                </div>
+              </div>
+
+              <div class="folder">
+                <span class="folder-name">styles/</span>
+                <div class="folder-content">
+                  <div class="file"><span class="file-name">App.css</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="file"><span class="file-name">.gitignore</span></div>
+      <div class="file"><span class="file-name">package.json</span></div>
+      <div class="file"><span class="file-name">README.md</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="project-info">
+  <h2>🚀 Project Overview</h2>
+  <p>Smoke-Stream is a full-stack web application combining tech articles, music streaming, and video playback in one platform.</p>
+  <ul>
+    <li>Tech Article Management - Read and manage technical content</li>
+    <li>Music Streaming Functionality - Stream your favorite tracks</li>
+    <li>Video Playback Capabilities - Watch and manage video content</li>
+  </ul>
+
+  <div class="tech-stack">
+    <div class="tech-badge">Node.js</div>
+    <div class="tech-badge">React</div>
+    <div class="tech-badge">Express</div>
+    <div class="tech-badge">MongoDB</div>
+    <div class="tech-badge">RESTful API</div>
+    <div class="tech-badge">JWT Auth</div>
+    <div class="tech-badge">WebSocket</div>
+  </div>
+
+  <div id="code-preview" class="code-preview">
+    <pre><code></code></pre>
+  </div>
+</div>
+
+<script>
+   document.querySelectorAll('.folder > .folder-name').forEach(folderName => {
+    folderName.addEventListener('click', (e) => {
+       const folder = e.target.parentElement;
+         folder.classList.toggle('expanded');
+       });
+    });
+
+const codeSnippets = {
+  'server.js': `const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+
+app.use(express.json());
+app.use('/api/tech', require('./routes/tech'));
+app.use('/api/music', require('./routes/music'));
+app.use('/api/video', require('./routes/video'));
+
+mongoose.connect(process.env.MONGODB_URI);
+
+app.listen(3000, () => console.log('Server running'));`,
+  'App.js': `import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import TechList from './components/TechList';
+import MusicPlayer from './components/MusicPlayer';
+import VideoPlayer from './components/VideoPlayer';
+
+function App() {
+  return (
+    <Router>
+      <Header />
+      <main>
+        <Route path="/tech" component={TechList} />
+        <Route path="/music" component={MusicPlayer} />
+        <Route path="/video" component={VideoPlayer} />
+      </main>
+      <Footer />
+    </Router>
+  );
+}`
+};
+
+document.querySelectorAll('.file').forEach(file => {
+  file.addEventListener('click', (e) => {
+    const fileName = e.target.textContent;
+    const codePreview = document.getElementById('code-preview');
+    const code = codeSnippets[fileName] || 'File content not available for preview';
+    codePreview.querySelector('code').textContent = code;
+    codePreview.style.display = 'block';
+  });
+});
+</script>
+
+</body>
+</html>

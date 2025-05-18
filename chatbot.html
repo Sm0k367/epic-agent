@@ -1,0 +1,598 @@
+<html><head><base href="https://html-css-js-tooling.com/"><title>AI Web Wizard - Your Magical Web Development Guide</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prismjs/1.24.1/prism.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prismjs/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+<style>
+body {
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #e0e0e0;
+}
+
+.chat-container {
+  background: #2d2d2d;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  padding: 20px;
+  margin-top: 20px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #404040;
+  margin-bottom: 12px;
+}
+
+.wizard-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.wizard-logo {
+  width: 100%;
+  height: 100%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+.avatar {
+  display: none;
+}
+
+.tutor-info {
+  flex: 1;
+}
+
+.tutor-name {
+  font-weight: 900;
+  font-size: 24px;
+  color: #e0e0e0;
+  background: linear-gradient(45deg, #4a4a9c, #4ECDC4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tutor-status {
+  font-size: 14px;
+  color: #a0a0a0; 
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.message pre {
+  margin: 10px 0;
+  padding: 12px;
+  background: #1a1a1a !important;
+  border-radius: 6px;
+  overflow-x: auto;
+  border: 1px solid #404040;
+}
+
+.message code {
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+.user-message {
+  background: #4a4a9c;
+  color: #e0e0e0;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.ai-message {
+  background: #3d3d3d;
+  color: #e0e0e0;
+  align-self: flex-start; 
+  border-bottom-left-radius: 4px;
+}
+
+.input-container {
+  background: #252525;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.tool-button {
+  padding: 6px 12px;
+  border: 1px solid #505050;
+  border-radius: 4px;
+  background: #3d3d3d;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+  color: #e0e0e0;
+}
+
+.tool-button:hover {
+  background: #4a4a4a;
+  border-color: #606060;
+}
+
+.input-area {
+  display: flex;
+  gap: 12px;
+}
+
+.message-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #505050;
+  border-radius: 6px;
+  font-size: 15px;
+  resize: none;
+  min-height: 24px;
+  max-height: 150px;
+  line-height: 1.5;
+  background: #3d3d3d;
+  color: #e0e0e0;
+}
+
+.message-input::placeholder {
+  color: #808080;
+}
+
+.send-button {
+  background: #4a4a9c;
+  color: #e0e0e0;
+  border: none;
+  padding: 0 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.send-button:hover {
+  background: #5a5a9c;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  background: #3d3d3d;
+  border-radius: 12px;
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #a0a0a0;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tag {
+  background: #3d3d3d;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tag:hover {
+  background: #4a4a4a;
+}
+
+.context-menu {
+  position: fixed;
+  background: #2d2d2d;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.context-menu-item {
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: #e0e0e0;
+}
+
+.context-menu-item:hover {
+  background: #3d3d3d;
+}
+
+</style></head><body>
+
+<div class="container">
+  <div class="chat-container" id="chatContainer">
+    <div class="header">
+      <div class="wizard-avatar">
+        <svg viewBox="0 0 100 100" class="wizard-logo">
+          <defs>
+            <linearGradient id="hat-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4a4a9c"/>
+              <stop offset="100%" style="stop-color:#6e6ee5"/> 
+            </linearGradient>
+            <linearGradient id="staff-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4ECDC4"/>
+              <stop offset="100%" style="stop-color:#2BAE9F"/>
+            </linearGradient>
+          </defs>
+          <!-- Wizard hat -->
+          <path d="M50 10 L80 40 L65 40 L50 25 L35 40 L20 40 Z" fill="url(#hat-gradient)"/>
+          <!-- Wizard face -->
+          <circle cx="50" cy="55" r="15" fill="#e0e0e0"/> 
+          <!-- Wizard staff -->
+          <path d="M30 45 L70 85" stroke="url(#staff-gradient)" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="70" cy="85" r="5" fill="#4ECDC4"/>
+        </svg>
+      </div>
+      <div class="tutor-info">
+        <div class="tutor-name">AI Web Wizard</div>
+        <div class="tutor-status">Your Magical Web Development Guide • Online</div>
+      </div>
+    </div>
+    <div class="messages" id="messagesContainer">
+    </div>
+    <div class="input-container">
+      <div class="toolbar">
+        <button class="tool-button" data-action="code">Insert Code Block</button>
+        <button class="tool-button" data-action="example">Request Example</button>
+        <button class="tool-button" data-action="explain">Ask for Explanation</button>
+      </div>
+      <div class="input-area">
+        <textarea class="message-input" id="messageInput" placeholder="Ask me anything about web development..." rows="1"></textarea>
+        <button class="send-button" id="sendButton">Send</button>
+      </div>
+      <div class="tags" id="suggestedTags">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const messagesContainer = document.getElementById('messagesContainer');
+const messageInput = document.getElementById('messageInput');
+const sendButton = document.getElementById('sendButton');
+const suggestedTags = document.getElementById('suggestedTags');
+const toolButtons = document.querySelectorAll('.tool-button');
+
+let contextMenu = null;
+
+// Auto-resize textarea
+messageInput.addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = (this.scrollHeight) + 'px';
+});
+
+async function getAIResponse(message, context = '') {
+  try {
+    const response = await fetch('/api/ai_completion', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prompt: `You are WebWizard, a magical and wise AI web development tutor who makes learning to code feel like an exciting adventure. ${context}
+        Respond to the following message with detailed, helpful information about web development: ${message}
+        
+        <typescript-interface>
+        interface Response {
+          reply: string;
+          followUp?: string;
+          codeExample?: string;
+          suggestedTags?: string[];
+          resources?: Array<{
+            title: string;
+            url: string;
+            description: string;
+          }>;
+        }
+        </typescript-interface>
+        
+        <example>
+        {
+          "reply": "Great question about CSS Grid! Let me explain how it works...",
+          "followUp": "Would you like to see a practical example of CSS Grid in action?",
+          "codeExample": ".grid-container { display: grid; grid-template-columns: repeat(3, 1fr); }",
+          "suggestedTags": ["css-grid", "layout", "responsive-design"],
+          "resources": [
+            {
+              "title": "CSS Grid Guide",
+              "url": "https://css-tricks.com/snippets/css/complete-guide-grid/",
+              "description": "Comprehensive guide to CSS Grid"
+            }
+          ]
+        }
+        </example>`,
+        data: message
+      })
+    });
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+    return {
+      reply: "I apologize, but I'm having trouble connecting right now. Please try again.",
+      followUp: null
+    };
+  }
+}
+
+function formatCodeBlock(code) {
+  return `<pre><code class="language-javascript">${code}</code></pre>`;
+}
+
+function addMessage(content, isUser = false) {
+  if (messagesContainer.children.length === 0) {
+    content = "✨ Greetings, fellow creator! I'm AI Web Wizard, your magical companion on the journey of web development mastery. Whether you're crafting your first webpage or building complex applications, I'm here to guide you with crystal-clear explanations and practical wisdom. What would you like to learn today? 🌟";
+  }
+  
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+  
+  // Check if content contains code blocks
+  if (content.includes('```')) {
+    const parts = content.split('```');
+    let formattedContent = '';
+    parts.forEach((part, index) => {
+      if (index % 2 === 0) {
+        formattedContent += part;
+      } else {
+        formattedContent += formatCodeBlock(part);
+      }
+    });
+    messageDiv.innerHTML = formattedContent;
+  } else {
+    messageDiv.textContent = content;
+  }
+  
+  messagesContainer.appendChild(messageDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  
+  // Highlight code blocks
+  if (!isUser) {
+    Prism.highlightAllUnder(messageDiv);
+  }
+}
+
+function updateSuggestedTags(tags = []) {
+  suggestedTags.innerHTML = '';
+  tags.forEach(tag => {
+    const tagElement = document.createElement('span');
+    tagElement.className = 'tag';
+    tagElement.textContent = tag;
+    tagElement.addEventListener('click', () => {
+      messageInput.value = `Tell me more about ${tag}`;
+      handleSendMessage();
+    });
+    suggestedTags.appendChild(tagElement);
+  });
+}
+
+function showTypingIndicator() {
+  const indicator = document.createElement('div');
+  indicator.className = 'typing-indicator';
+  indicator.innerHTML = `
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  `;
+  messagesContainer.appendChild(indicator);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  return indicator;
+}
+
+toolButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const action = button.dataset.action;
+    let prefix = '';
+    
+    switch(action) {
+      case 'code':
+        prefix = 'Show me an example of ';
+        break;
+      case 'example':
+        prefix = 'Can you provide a practical example of ';
+        break;
+      case 'explain':
+        prefix = 'Please explain how ';
+        break;
+    }
+    
+    messageInput.value = prefix + messageInput.value;
+    messageInput.focus();
+  });
+});
+
+async function handleSendMessage() {
+  const message = messageInput.value.trim();
+  if (!message) return;
+
+  // Add user message
+  addMessage(message, true);
+  messageInput.value = '';
+  messageInput.style.height = 'auto';
+
+  // Show typing indicator
+  const typingIndicator = showTypingIndicator();
+
+  // Get AI response
+  const response = await getAIResponse(message);
+  
+  // Remove typing indicator
+  typingIndicator.remove();
+
+  // Add AI response
+  addMessage(response.reply);
+  
+  if (response.codeExample) {
+    setTimeout(() => addMessage('```' + response.codeExample + '```'), 800);
+  }
+  
+  if (response.followUp) {
+    setTimeout(() => addMessage(response.followUp), 1600);
+  }
+  
+  if (response.suggestedTags) {
+    updateSuggestedTags(response.suggestedTags);
+  }
+  
+  if (response.resources) {
+    setTimeout(() => {
+      let resourcesMessage = 'Here are some helpful resources:\n\n';
+      response.resources.forEach(resource => {
+        resourcesMessage += `• ${resource.title}: ${resource.url}\n${resource.description}\n\n`;
+      });
+      addMessage(resourcesMessage);
+    }, 2400);
+  }
+}
+
+sendButton.addEventListener('click', handleSendMessage);
+messageInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    handleSendMessage();
+  }
+});
+
+// Initialize with focus on input
+messageInput.focus();
+
+// Add context menu
+document.addEventListener('contextmenu', function(e) {
+  if (e.target.closest('.message')) {
+    e.preventDefault();
+    
+    if (contextMenu) {
+      contextMenu.remove();
+    }
+    
+    contextMenu = document.createElement('div');
+    contextMenu.className = 'context-menu';
+    contextMenu.innerHTML = `
+      <div class="context-menu-item" data-action="copy">Copy</div>
+      <div class="context-menu-item" data-action="explain">Ask for explanation</div>
+      <div class="context-menu-item" data-action="example">Request example</div>
+    `;
+    
+    contextMenu.style.left = e.pageX + 'px';
+    contextMenu.style.top = e.pageY + 'px';
+    
+    document.body.appendChild(contextMenu);
+  }
+});
+
+document.addEventListener('click', function(e) {
+  if (contextMenu && !e.target.closest('.context-menu')) {
+    contextMenu.remove();
+    contextMenu = null;
+  }
+});
+
+document.addEventListener('click', function(e) {
+  if (e.target.closest('.context-menu-item')) {
+    const action = e.target.dataset.action;
+    const messageElement = document.elementFromPoint(
+      parseInt(contextMenu.style.left),
+      parseInt(contextMenu.style.top)
+    ).closest('.message');
+    
+    if (messageElement) {
+      const messageText = messageElement.textContent;
+      
+      switch(action) {
+        case 'copy':
+          navigator.clipboard.writeText(messageText);
+          break;
+        case 'explain':
+          messageInput.value = `Please explain: "${messageText}"`;
+          handleSendMessage();
+          break;
+        case 'example':
+          messageInput.value = `Can you show an example of: "${messageText}"`;
+          handleSendMessage();
+          break;
+      }
+    }
+    
+    contextMenu.remove();
+    contextMenu = null;
+  }
+});
+</script>
+
+</body></html>

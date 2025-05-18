@@ -1,0 +1,10 @@
+Final Steps
+Initialize Git Repository:
+git init
+   git add .
+   git commit -m "Initial commit"
+
+
+Deploy to Vercel:
+Push your code to a GitHub repository.
+Link the repository to Vercel and deploy.

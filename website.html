@@ -1,0 +1,331 @@
+<html><head><base href="." /><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Smoke-Stream</title><style>
+        :root {
+            --neon-purple: #b829e9;
+            --neon-pink: #ff2ecc;
+            --dark-purple: #2c0051;
+            --light-purple: #9d4edd;
+            --bg-dark: #13001f;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark), #1a0029);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--dark-purple), #3d0066);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 15px var(--neon-purple);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(184, 41, 233, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px var(--neon-purple);
+            }
+            to {
+                text-shadow: 0 0 20px var(--neon-purple), 0 0 30px var(--neon-pink);
+            }
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            gap: 2rem;
+        }
+
+        .project-info {
+            background: rgba(44, 0, 81, 0.7);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(184, 41, 233, 0.2);
+            border: 1px solid var(--neon-purple);
+            backdrop-filter: blur(10px);
+        }
+
+        .content-section {
+            background: rgba(61, 0, 102, 0.8);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(184, 41, 233, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-purple);
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px var(--neon-purple);
+        }
+
+        #music-player, #video-player {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .player-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(184, 41, 233, 0.1);
+            border-radius: 8px;
+            border: 1px solid var(--neon-purple);
+        }
+
+        #main-video {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px var(--neon-purple);
+            border: 2px solid var(--neon-pink);
+        }
+
+        select {
+            background: rgba(61, 0, 102, 0.9);
+            color: #fff;
+            padding: 0.75rem;
+            border: 1px solid var(--neon-purple);
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            background: var(--dark-purple);
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        button {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--neon-purple);
+        }
+
+        #tech-articles article {
+            background: rgba(61, 0, 102, 0.6);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--neon-purple);
+            transition: all 0.3s ease;
+        }
+
+        #tech-articles article:hover {
+            transform: translateX(4px);
+            background: rgba(61, 0, 102, 0.8);
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+
+        #progress {
+            flex: 1;
+            height: 8px;
+            -webkit-appearance: none;
+            background: var(--dark-purple);
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--neon-purple);
+        }
+
+        #progress::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--neon-purple);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        footer {
+            background: linear-gradient(to right, var(--dark-purple), #3d0066);
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+            box-shadow: 0 -2px 15px var(--neon-purple);
+            border-top: 1px solid var(--neon-purple);
+        }
+
+        h2, h3 {
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px rgba(255, 46, 204, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
+            }
+            
+            .player-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            select {
+                width: 100%;
+            }
+        }
+    </style></head><body><header><h1>🎵 Smoke-Stream</h1></header><main><div class="project-info"><h2>Welcome to Smoke-Stream</h2><p>Your premium entertainment hub for tech knowledge, music, and videos.</p><div class="content-section"><h3>📚 Featured Tech Articles</h3><div id="tech-articles"></div></div><div class="content-section"><h3>🎵 Music Player</h3><div id="music-player"><div class="player-controls"><button id="play-pause">▶️ Play</button><input type="range" id="progress" min="0" max="100" value="0" /><select id="track-select"><option value="">Select a track...</option></select></div></div></div><div class="content-section"><h3>🎬 Video Player</h3><div id="video-player"><video id="main-video" controls><source src="" type="video/mp4" /></video><select id="video-select"><option value="">Select a video...</option></select></div></div></div></main><footer><p>© 2024 Smoke-Stream - Your Entertainment Destination</p></footer><script>
+const MOCK_DATA = {
+    articles: [
+        {
+            title: 'The Future of Web Development',
+            content: 'Explore the latest trends in web development including AI integration, WebAssembly, and progressive web apps. Learn how these technologies are shaping the future of the web.'
+        },
+        {
+            title: 'Mastering Modern JavaScript',
+            content: 'Deep dive into modern JavaScript features including async/await, modules, and the latest ES2023 additions. Practical examples and best practices included.'
+        },
+        {
+            title: 'Cloud Computing Essentials',
+            content: 'Understanding cloud architecture, serverless computing, and microservices. Essential knowledge for modern developers.'
+        }
+    ],
+    tracks: [
+        {
+            name: 'Chill Lo-Fi Beats',
+            duration: '4:15',
+            genre: 'Lo-Fi'
+        },
+        {
+            name: 'Deep Focus',
+            duration: '5:30',
+            genre: 'Ambient'
+        },
+        {
+            name: 'Coding Jazz',
+            duration: '3:45',
+            genre: 'Jazz'
+        }
+    ],
+    videos: [
+        {
+            name: 'Advanced React Patterns',
+            duration: '15:20',
+            category: 'Frontend'
+        },
+        {
+            name: 'Docker Masterclass',
+            duration: '20:15',
+            category: 'DevOps'
+        },
+        {
+            name: 'AI in Web Development',
+            duration: '18:30',
+            category: 'AI'
+        }
+    ]
+};
+
+function initializePlatform() {
+    loadTechArticles();
+    initializeMusicPlayer();
+    initializeVideoPlayer();
+}
+
+function loadTechArticles() {
+    const articlesContainer = document.getElementById('tech-articles');
+    articlesContainer.innerHTML = '';
+    
+    MOCK_DATA.articles.forEach(article => {
+        const articleElem = document.createElement('article');
+        articleElem.innerHTML = `
+            <h4>${article.title}</h4>
+            <p>${article.content}</p>
+        `;
+        articlesContainer.appendChild(articleElem);
+    });
+}
+
+function initializeMusicPlayer() {
+    const trackSelect = document.getElementById('track-select');
+    trackSelect.innerHTML = '<option value="">Select a track...</option>';
+    
+    MOCK_DATA.tracks.forEach(track => {
+        const option = document.createElement('option');
+        option.value = track.name;
+        option.textContent = `${track.name} - ${track.genre} (${track.duration})`;
+        trackSelect.appendChild(option);
+    });
+
+    const playPauseBtn = document.getElementById('play-pause');
+    const progressBar = document.getElementById('progress');
+    
+    playPauseBtn.addEventListener('click', () => {
+        const isPlaying = playPauseBtn.textContent.includes('Pause');
+        playPauseBtn.textContent = isPlaying ? '▶️ Play' : '⏸️ Pause';
+        
+        if (!isPlaying) {
+            const interval = setInterval(() => {
+                if (progressBar.value < 100 && !playPauseBtn.textContent.includes('Play')) {
+                    progressBar.value = parseInt(progressBar.value) + 1;
+                } else {
+                    clearInterval(interval);
+                    playPauseBtn.textContent = '▶️ Play';
+                    progressBar.value = 0;
+                }
+            }, 100);
+        }
+    });
+}
+
+function initializeVideoPlayer() {
+    const videoSelect = document.getElementById('video-select');
+    videoSelect.innerHTML = '<option value="">Select a video...</option>';
+    
+    MOCK_DATA.videos.forEach(video => {
+        const option = document.createElement('option');
+        option.value = video.name;
+        option.textContent = `${video.name} - ${video.category} (${video.duration})`;
+        videoSelect.appendChild(option);
+    });
+
+    videoSelect.addEventListener('change', () => {
+        const video = document.getElementById('main-video');
+        if (videoSelect.value) {
+            video.poster = `https://picsum.photos/800/450?random=${Math.random()}`;
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initializePlatform);
+</script></body></html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smoke Stream Unified Platform</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #181818;
+            color: #eee;
+        }
+
+        header {
+            background-color: #282828;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #ffcc00;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ddd;
+            padding: 8px 16px;
+            border-radius: 5px;
+            background-color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .hero {
+            background-color: #333;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .feature {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature svg {
+            width: 60px;
+            height: 60px;
+            fill: #ffcc00;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            margin-top: 0;
+            color: #eee;
+        }
+
+        .feature p {
+            color: #aaa;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .content-item {
+            background-color: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .content-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .content-item img {
+            width: 100%;
+            display: block; /* Prevents extra space below image */
+        }
+
+        .content-details {
+            padding: 15px;
+        }
+
+        .content-details h4 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .content-details p {
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        footer {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            color: #888;
+            font-size: 0.8em;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <header class="fade-in">
+        <h1>
+            <svg width="40" height="40" viewBox="0 0 100 100">
+                <path fill="#ffcc00" d="M50,10 L90,90 L10,90 Z M50,25 L75,75 L25,75 Z"/>
+            </svg>
+            Smoke Stream
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="#explore">Explore</a></li>
+                <li><a href="#create">Create</a></li>
+                <li><a href="#smoken_token">SmokeN Token</a></li>
+                <li><a href="#community">Community</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="fade-in">
+        <section class="hero">
+            <h2>Welcome to the Unified Smoke Stream Platform</h2>
+            <p>Experience the future of multimedia, powered by AI, IoT, and immersive technologies. Connect, create, and explore like never before.</p>
+            <a href="#learn-more" style="display: inline-block; padding: 10px 20px; background-color: #ffcc00; color: #181818; text-decoration: none; border-radius: 5px; font-weight: bold;">Learn More</a>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <svg viewBox="0 0 100 100">
+                    <path fill="#ffcc00" d="M10 10 L90 10 L90 90 L10 90 Z M20 20 L80 20 L80 80 L20 80 Z M30 30 L70 30 L70 70 L30 70 Z"/>
+                </svg>
+                <h3>AI-Powered Curation</h3>
+                <p>Discover content tailored to your interests with our advanced AI algorithms.</p>
+            </div>
+            <div class="feature">
+                <svg viewBox="0 0 100 100">
+                    <path fill="#ffcc00" d="M50 10 L90 90 L10 90 Z M50 25 L75 75 L25 75 Z"/>
+                </svg>
+                <h3>Immersive Experiences</h3>
+                <p>Dive into virtual and augmented reality content for unparalleled engagement.</p>
+            </div>
+            <div class="feature">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" fill="#ffcc00"/>
+                    <circle cx="50" cy="50" r="30" fill="#181818"/>
+                </svg>
+                <h3>IoT Integration</h3>
+                <p>Connect your smart devices and interact with the platform in innovative ways.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Featured Content</h2>
+            <div class="content-grid">
+                <div class="content-item">
+                    <a href="https://example.com/watch/featured1">
+                        <svg viewBox="0 0 300 150">
+                            <rect width="300" height="150" fill="#555" />
+                            <polygon points="120,50 180,75 120,100" fill="#eee" />
+                        </svg>
+                    </a>
+                    <div class="content-details">
+                        <h4>AI Art Showcase</h4>
+                        <p>Explore stunning artwork generated by artificial intelligence.</p>
+                    </div>
+                </div>
+                <div class="content-item">
+                    <a href="https://example.com/watch/featured2">
+                        <svg viewBox="0 0 300 150">
+                            <rect width="300" height="150" fill="#555" />
+                            <circle cx="150" cy="75" r="50" fill="#eee" />
+                        </svg>
+                    </a>
+                    <div class="content-details">
+                        <h4>Live IoT Data Stream</h4>
+                        <p>Real-time data visualization from connected devices.</p>
+                    </div>
+                </div>
+                <div class="content-item">
+                    <a href="https://example.com/watch/featured3">
+                        <svg viewBox="0 0 300 150">
+                            <rect width="300" height="150" fill="#555" />
+                            <rect x="50" y="50" width="200" height="50" fill="#eee" />
+                        </svg>
+                    </a>
+                    <div class="content-details">
+                        <h4>VR Exploration</h4>
+                        <p>Embark on a virtual tour of amazing locations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="code-sharing">
+            <h2 class="section-title">Code Sharing</h2>
+            <div class="content-grid">
+                <div class="content-item">
+                    <a href="https://example.com/code/1">
+                        <img src="https://via.placeholder.com/300x150" alt="Code Example 1">
+                    </a>
+                    <div class="content-details">
+                        <h4>Python AI Script</h4>
+                        <p>Share and learn from AI scripts written in Python.</p>
+                    </div>
+                </div>
+                <div class="content-item">
+                    <a href="https://example.com/code/2">
+                        <img src="https://via.placeholder.com/300x150" alt="Code Example 2">
+                    </a>
+                    <div class="content-details">
+                        <h4>JavaScript IoT Integration</h4>
+                        <p>Explore IoT integration examples using JavaScript.</p>
+                    </div>
+                </div>
+                <div class="content-item">
+                    <a href="https://example.com/code/3">
+                        <img src="https://via.placeholder.com/300x150" alt="Code Example 3">
+                    </a>
+                    <div class="content-details">
+                        <h4>VR Development</h4>
+                        <p>Learn VR development with these comprehensive guides.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="discussions">
+            <h2 class="section-title">Discussions</h2>
+            <div class="content-grid">
+                <div class="content-item">
+                    <a href="https://example.com/discussion/1">
+                        <img src="https://via.placeholder.com/300x150" alt="Discussion 1">
+                    </a>
+                    <div class="content-details">
+                        <h4>Latest AI Trends</h4>
+                        <p>Join the conversation on the latest trends in AI.</p>
+                    </div>
+                </div>
+                <div class="content-item">
+                    <a href="https://example.com/discussion/2">
+                        <img src="https://via.placeholder.com/300x150" alt="Discussion 2">
+                    </a>
+                    <div class="content-details">
+                        <h4>IoT Innovations</h4>
+                        <p>Discuss the newest innovations in IoT technology.</p>
+                    </div>
+                </div>
+                <div class="content-item">
+                    <a href="https://example.com/discussion/3">
+                        <img src="https://via.placeholder.com/300x150" alt="Discussion 3">
+                    </a>
+                    <div class="content-details">
+                        <h4>VR and AR Applications</h4>
+                        <p>Share your thoughts on VR and AR applications.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community">
+            <h2 class="section-title">Community Love</h2>
+            <div class="content-grid">
+                <div class="content-item">
+                    <a href="https://example.com/community/1">
+                        <img src="https://via.placeholder.com/300x150" alt="Community 1">
+                    </a>
+                    <div class="content-details">
+                        <h4>Top Contributors</h4>
+                        <p>Get recognized for your contributions to the community.</p>
+                    </div>
+                </div>
+                <div class="content-item">
+                    <a href="https://example.com/community/2">
+                        <img src="https://via.placeholder.com/300x150" alt="Community 2">
+                    </a>
+                    <div class="content-details">
+                        <h4>Community Events</h4>
+                        <p>Participate in events and meetups organized by the community.</p>
+                    </div>
+                </div>
+                <div class="content-item">
+                    <a href="https://example.com/community/3">
+                        <img src="https://via.placeholder.com/300x150" alt="Community 3">
+                    </a>
+                    <div class="content-details">
+                        <h4>Leaderboard</h4>
+                        <p>See who the top contributors are and aim for the top spot.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="fade-in">
+        &copy; 2024 Smoke Stream Unified Platform. All rights reserved. | <a href="https://example.com/privacy">Privacy Policy</a> | <a href="https://example.com/terms">Terms of Service</a>
+    </footer>
+
+    <script>
+        // Basic JavaScript for potential interactivity
+        console.log("Smoke Stream platform loaded!");
+    </script>
+</body>
+</html>
