@@ -1,271 +1,278 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<base href="/" />
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unified Smoke Stream Platform</title>
 <style>
-  body {
-    font-family: monospace;
-    background: #1e1e1e;
-    color: #d4d4d4;
-    padding: 2rem;
-  }
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
 
-  .folder {
-    margin-left: 20px;
-    position: relative;
-    cursor: pointer;
-  }
+    h1, h2, h3 {
+        color: #bb86fc;
+        margin-bottom: 0.5em;
+    }
 
-  .folder:before {
-    content: "📁";
-    position: absolute;
-    left: -20px;
-  }
+    section {
+        padding: 4em 2em;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-  .file {
-    margin-left: 20px;
-    position: relative;
-  }
+    .hero {
+        text-align: center;
+        padding: 6em 2em;
+    }
 
-  .file:before {
-    content: "📄";
-    position: absolute;
-    left: -20px;
-  }
+    .hero h1 {
+        font-size: 3em;
+        margin-bottom: 0.5em;
+    }
 
-  .folder-name {
-    color: #569cd6;
-    font-weight: bold;
-  }
+    .hero p {
+        font-size: 1.2em;
+        color: #b3b3b3;
+    }
 
-  .file-name {
-    color: #ce9178;
-  }
+    .components {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2em;
+    }
 
-  .tree-line {
-    position: absolute;
-    left: -15px;
-    top: 0;
-    bottom: 0;
-    border-left: 1px solid #666;
-  }
+    .component {
+        background-color: #272727;
+        padding: 2em;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
 
-  .project-info {
-    background: #2d2d2d;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-top: 2rem;
-  }
+    .component:hover {
+        transform: scale(1.05);
+    }
 
-  .tech-stack {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-  }
+    .component h3 {
+        margin-top: 0;
+    }
 
-  .tech-badge {
-    background: #333;
-    padding: 0.5rem 1rem;
-    border-radius: 15px;
-    font-size: 0.9em;
-    color: #fff;
-    transition: all 0.3s ease;
-  }
+    .component ul {
+        list-style: none;
+        padding: 0;
+    }
 
-  .tech-badge:hover {
-    background: #444;
-    transform: translateY(-2px);
-  }
+    .component ul li {
+        margin-bottom: 0.5em;
+        display: flex;
+        align-items: center;
+    }
 
-    .folder-content {
-    display: none;
-    margin-left: 20px;
-  }
+    .component ul li::before {
+        content: "🚀";
+        margin-right: 0.5em;
+    }
 
-  .folder.expanded > .folder-content {
-    display: block;
-  }
+    .links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1em;
+    }
 
-  .code-preview {
-    background: #1a1a1a;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-top: 1rem;
-    display: none;
-  }
+    .link-card {
+        background-color: #333333;
+        padding: 1.5em;
+        border-radius: 6px;
+        text-align: center;
+        transition: background-color 0.3s ease-in-out;
+    }
 
-  .file:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
+    .link-card:hover {
+        background-color: #444444;
+    }
+
+    .link-card a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 2em;
+        background-color: #121212;
+        color: #777;
+        font-size: 0.9em;
+    }
+
+    .footer a {
+        color: #bb86fc;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+    svg.icon {
+        width: 1.5em;
+        height: 1.5em;
+        margin-right: 0.5em;
+        fill: #bb86fc;
+        vertical-align: middle;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
 </style>
 </head>
 <body>
+    <section class="hero animate-up">
+        <h1>Unified Smoke Stream Platform</h1>
+        <p>Connect, create, and explore the future of technology, art, and community through AI, IoT, and immersive experiences.</p>
+    </section>
 
-<div id="project-structure">
-  <h1>📊 Smoke-Stream Project Structure</h1>
-
-  <div class="folder expanded">
-    <span class="folder-name">Smoke-Stream/</span>
-    <div class="folder-content">
-      <div class="folder">
-        <span class="folder-name">backend/</span>
-        <div class="folder-content">
-          <div class="file"><span class="file-name">server.js</span></div>
-
-          <div class="folder">
-            <span class="folder-name">routes/</span>
-            <div class="folder-content">
-              <div class="file"><span class="file-name">tech.js</span></div>
-              <div class="file"><span class="file-name">music.js</span></div>
-              <div class="file"><span class="file-name">video.js</span></div>
-            </div>
-          </div>
-
-          <div class="folder">
-            <span class="folder-name">models/</span>
-            <div class="folder-content">
-              <div class="file"><span class="file-name">TechArticle.js</span></div>
-              <div class="file"><span class="file-name">Music.js</span></div>
-              <div class="file"><span class="file-name">Video.js</span></div>
-            </div>
-          </div>
-
-          <div class="folder">
-            <span class="folder-name">controllers/</span>
-            <div class="folder-content">
-              <div class="file"><span class="file-name">techController.js</span></div>
-              <div class="file"><span class="file-name">musicController.js</span></div>
-              <div class="file"><span class="file-name">videoController.js</span></div>
-            </div>
-          </div>
+    <section class="animate-up">
+        <h2>Smoke Stream Platform</h2>
+        <div class="component">
+            <h3>Concept: Central Hub</h3>
+            <ul>
+                <li><svg class="icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z"/></svg> AI-Powered Curation: Personalized content feeds.</li>
+                <li><svg class="icon" viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5V14H4v3h6zM14 7.6c1.7 1.3 2.8 3.5 2.8 5.7 0 4.4-3.6 8-8 8S2 17.7 2 13.3c0-2.2 1.1-4.3 2.8-5.7l1.3 1.1c-1.3 1-2.1 2.5-2.1 4.6 0 3.3 2.7 6 6 6s6-2.7 6-6c0-2.1-.8-3.6-2.1-4.6l1.3-1.1z"/></svg> Immersive Experiences: Support for VR/AR content.</li>
+                <li><svg class="icon" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM10 20H8v-7h2v7zm-1-9h1.5v4.5H9.5V11zm6 9h-2v-3.5h2V20zm-1-5h1.5v2H14.5V15z"/></svg> IoT Integration: Interact with smart devices.</li>
+                <li><svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.7 3.47-2.7 6-2.7 2.54 0 5.1 1 5.97 2.7-1.29 1.94-3.5 3.22-6 3.22z"/></svg> User Profiles: Manage content and community interaction.</li>
+                <li><svg class="icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg> Search Functionality: Find any content on the platform.</li>
+            </ul>
         </div>
-      </div>
+    </section>
 
-      <div class="folder">
-        <span class="folder-name">frontend/</span>
-        <div class="folder-content">
-          <div class="folder">
-            <span class="folder-name">public/</span>
-            <div class="folder-content">
-              <div class="file"><span class="file-name">index.html</span></div>
+    <section class="animate-up">
+        <h2>Content Hubs</h2>
+        <div class="components">
+            <div class="component">
+                <h3>AI Art Showcase</h3>
+                <ul>
+                    <li>🖼️ Image browsing</li>
+                    <li>🧑‍🎨 User showcases</li>
+                    <li>👤 Artist profiles</li>
+                    <li>🔗 Potential NFT integration</li>
+                </ul>
             </div>
-          </div>
-
-          <div class="folder">
-            <span class="folder-name">src/</span>
-            <div class="folder-content">
-              <div class="file"><span class="file-name">App.js</span></div>
-              <div class="file"><span class="file-name">index.js</span></div>
-
-              <div class="folder">
-                <span class="folder-name">components/</span>
-                <div class="folder-content">
-                  <div class="file"><span class="file-name">Header.js</span></div>
-                  <div class="file"><span class="file-name">Footer.js</span></div>
-                  <div class="file"><span class="file-name">TechList.js</span></div>
-                  <div class="file"><span class="file-name">MusicPlayer.js</span></div>
-                  <div class="file"><span class="file-name">VideoPlayer.js</span></div>
-                </div>
-              </div>
-
-              <div class="folder">
-                <span class="folder-name">styles/</span>
-                <div class="folder-content">
-                  <div class="file"><span class="file-name">App.css</span></div>
-                </div>
-              </div>
+            <div class="component">
+                <h3>Live IoT Data Stream</h3>
+                <ul>
+                    <li>📊 Interactive dashboards</li>
+                    <li>⚙️ Customizable data feeds</li>
+                    <li>🔌 IoT device management</li>
+                </ul>
             </div>
-          </div>
+            <div class="component">
+                <h3>VR Exploration Portal</h3>
+                <ul>
+                    <li>🌐 Virtual environment browsing</li>
+                    <li>🧑‍🤝‍🧑 User-created experiences</li>
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M19 7v4h-3l3.29 3.29-3.3 3.3V17h4v-3l3.29-3.29-3.3-3.3V7zM14 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2m-4 2H4V10h6v4z"/></svg> VR content streaming</li>
+                </ul>
+            </div>
+            <div class="component">
+                <h3>Code Sharing Repository</h3>
+                <ul>
+                    <li>🐍 Python AI code</li>
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H9v-2h4V7h2v4h4v2z"/></svg> JavaScript IoT code</li>
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5V14H4v3h6zM14 7.6c1.7 1.3 2.8 3.5 2.8 5.7 0 4.4-3.6 8-8 8S2 17.7 2 13.3c0-2.2 1.1-4.3 2.8-5.7l1.3 1.1c-1.3 1-2.1 2.5-2.1 4.6 0 3.3 2.7 6 6 6s6-2.7 6-6c0-2.1-.8-3.6-2.1-4.6l1.3-1.1z"/></svg> VR Development code</li>
+                    <li>💬 Code commenting</li>
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M14 10H3v2h11v-2zm0-4H3v2h11V6zm4 8v-4c0-1.11-.89-2-2-2h-1v4H3v6h13c1.11 0 2-.89 2-2zm-2 0H5v-2h10v2z"/></svg> Version control</li>
+                    <li>👤 User profiles</li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="file"><span class="file-name">.gitignore</span></div>
-      <div class="file"><span class="file-name">package.json</span></div>
-      <div class="file"><span class="file-name">README.md</span></div>
-    </div>
-  </div>
-</div>
+    <section class="animate-up">
+        <h2>Community Engagement</h2>
+        <div class="components">
+            <div class="component">
+                <h3>Discussions</h3>
+                <ul>
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-2 16H6v-2h6v2zm0-4H6v-2h6v2zm-1-4V3.5L18.5 9H13z"/></svg> Topic-based forums</li>
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M21.99 8c0-4.41-4.03-8-9-8s-9 3.59-9 8c0 5.29 4.47 9.67 11 11.49V19h-3v-3.89c-3.97-1.52-6.8-5.13-6.8-9.11 0-3.87 3.13-7 7-7s7 3.13 7 7c0 3.98-2.83 7.6-6.8 9.11V19h-3v1.49c6.53-1.82 11-6.2 11-11.49z"/></svg> User engagement tools</li>
+                    <li>🔔 Real-time notifications</li>
+                </ul>
+            </div>
+            <div class="component">
+                <h3>Community Features</h3>
+                <ul>
+                    <li><svg class="icon" viewBox="0 0 24 24"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.01 8.6 1.5 6.71 4.69 3.1 5.51 2.76 9.19l-2.4 2.79L4.6 14.79l-.34 3.7 3.61.82 1.89 3.19L12 21.99l3.4 0.51 1.89-3.19 3.61-.82.34-3.7L19.4 14.79 23 12zm-10 5h-1v-4h1v4zm-1-6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg> Top Contributor Recognition</li>
+                    <li>🗓️ Community Events: Online/offline meetups</li>
+                    <li>🏆 Leaderboard System: Gamified ranking</li>
+                </ul>
+            </div>
+            <div class="component">
+                <h3>Live Streaming on <a href="https://x.com" style="color: #bb86fc; text-decoration: underline;" target="_blank" rel="noopener noreferrer">X.com</a></h3>
+                <ul>
+                    <li>🔴 Direct streaming functionality</li>
+                    <li>💬 Real-time chat and interaction</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-<div class="project-info">
-  <h2>🚀 Project Overview</h2>
-  <p>Smoke-Stream is a full-stack web application combining tech articles, music streaming, and video playback in one platform.</p>
-  <ul>
-    <li>Tech Article Management - Read and manage technical content</li>
-    <li>Music Streaming Functionality - Stream your favorite tracks</li>
-    <li>Video Playback Capabilities - Watch and manage video content</li>
-  </ul>
+    <section class="animate-up">
+        <h2>Ecosystem Links</h2>
+        <div class="links">
+            <div class="link-card"><a href="https://example.com/smoken-token-store" target="_blank" rel="noopener noreferrer">Smoken Token Store</a></div>
+            <div class="link-card"><a href="https://example.com/ai-tech-made-easy" target="_blank" rel="noopener noreferrer">AI Tech Made Easy</a></div>
+            <div class="link-card"><a href="https://www.youtube.com/c/EpicTechAI" target="_blank" rel="noopener noreferrer">EpicTech AI YouTube Channel</a></div>
+            <div class="link-card"><a href="https://example.com/smoken-token" target="_blank" rel="noopener noreferrer">Smoken Token</a></div>
+            <div class="link-card"><a href="https://example.com/ai-tech" target="_blank" rel="noopener noreferrer">AI Tech</a></div>
+            <div class="link-card"><a href="https://example.com/ai-butcher-blog" target="_blank" rel="noopener noreferrer">AI Butcher Blog</a></div>
+            <div class="link-card"><a href="https://example.com/ai-butcher-home" target="_blank" rel="noopener noreferrer">AI Butcher Home</a></div>
+            <div class="link-card"><a href="https://example.com/stripe-subscription" target="_blank" rel="noopener noreferrer">Stripe Subscription</a></div>
+            <div class="link-card"><a href="https://example.com/leo-v1" target="_blank" rel="noopener noreferrer">Leo v1.0 Release</a></div>
+            <div class="link-card"><a href="https://example.com/biz-site" target="_blank" rel="noopener noreferrer">Biz Site</a></div>
+        </div>
+    </section>
 
-  <div class="tech-stack">
-    <div class="tech-badge">Node.js</div>
-    <div class="tech-badge">React</div>
-    <div class="tech-badge">Express</div>
-    <div class="tech-badge">MongoDB</div>
-    <div class="tech-badge">RESTful API</div>
-    <div class="tech-badge">JWT Auth</div>
-    <div class="tech-badge">WebSocket</div>
-  </div>
+    <section class="animate-up">
+        <h2>Technical Considerations</h2>
+        <p>Our platform is built with a modular architecture, focusing on scalability and security. We seamlessly integrate AI across all components, ensure compatibility with various IoT protocols, and support leading VR/AR technologies. Efficient database management and a comprehensive API system are central to our design.</p>
+    </section>
 
-  <div id="code-preview" class="code-preview">
-    <pre><code></code></pre>
-  </div>
-</div>
+    <section class="animate-up">
+        <h2>Implementation Phases (Conceptual)</h2>
+        <p>We are rolling out the platform in phases:</p>
+        <ul>
+            <li><strong>Phase 1 (MVP):</strong> Core platform, AI-powered curation, basic IoT integration, and AI Art showcase.</li>
+            <li><strong>Phase 2:</strong> VR exploration portal, code sharing repository, community discussions, and basic user profile functionality.</li>
+            <li><strong>Phase 3:</strong> Live streaming on X.com integration, advanced community features, Smoken Token Store.</li>
+            <li><strong>Phase 4:</strong> Deep IoT integration, gamified systems, and monetization strategies.</li>
+        </ul>
+    </section>
 
-<script>
-   document.querySelectorAll('.folder > .folder-name').forEach(folderName => {
-    folderName.addEventListener('click', (e) => {
-       const folder = e.target.parentElement;
-         folder.classList.toggle('expanded');
-       });
-    });
+    <section class="animate-up">
+        <h2>Next Steps</h2>
+        <p>We are currently in the detailed feature planning stage, defining specific requirements and user flows. Technology stack selection and team assembly are also underway. Stay tuned for more updates!</p>
+    </section>
 
-const codeSnippets = {
-  'server.js': `const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-
-app.use(express.json());
-app.use('/api/tech', require('./routes/tech'));
-app.use('/api/music', require('./routes/music'));
-app.use('/api/video', require('./routes/video'));
-
-mongoose.connect(process.env.MONGODB_URI);
-
-app.listen(3000, () => console.log('Server running'));`,
-  'App.js': `import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import TechList from './components/TechList';
-import MusicPlayer from './components/MusicPlayer';
-import VideoPlayer from './components/VideoPlayer';
-
-function App() {
-  return (
-    <Router>
-      <Header />
-      <main>
-        <Route path="/tech" component={TechList} />
-        <Route path="/music" component={MusicPlayer} />
-        <Route path="/video" component={VideoPlayer} />
-      </main>
-      <Footer />
-    </Router>
-  );
-}`
-};
-
-document.querySelectorAll('.file').forEach(file => {
-  file.addEventListener('click', (e) => {
-    const fileName = e.target.textContent;
-    const codePreview = document.getElementById('code-preview');
-    const code = codeSnippets[fileName] || 'File content not available for preview';
-    codePreview.querySelector('code').textContent = code;
-    codePreview.style.display = 'block';
-  });
-});
-</script>
+    <footer class="footer">
+        &copy; 2024 Unified Smoke Stream Platform | Follow us on <a href="https://x.com/EpicTechAI">X.com</a>
+    </footer>
 
 </body>
 </html>

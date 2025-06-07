@@ -1,0 +1,137 @@
+body {
+        font-family: sans-serif;
+        margin: 0;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+        color: #bb86fc;
+        margin-bottom: 0.5em;
+    }
+
+    section {
+        padding: 4em 2em;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 6em 2em;
+    }
+
+    .hero h1 {
+        font-size: 3em;
+        margin-bottom: 0.5em;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+        color: #b3b3b3;
+    }
+
+    .components {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2em;
+    }
+
+    .component {
+        background-color: #272727;
+        padding: 2em;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .component:hover {
+        transform: scale(1.05);
+    }
+
+    .component h3 {
+        margin-top: 0;
+    }
+
+    .component ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .component ul li {
+        margin-bottom: 0.5em;
+        display: flex;
+        align-items: center;
+    }
+
+    .component ul li::before {
+        content: "🚀";
+        margin-right: 0.5em;
+    }
+
+    .links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1em;
+    }
+
+    .link-card {
+        background-color: #333333;
+        padding: 1.5em;
+        border-radius: 6px;
+        text-align: center;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .link-card:hover {
+        background-color: #444444;
+    }
+
+    .link-card a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 2em;
+        background-color: #121212;
+        color: #777;
+        font-size: 0.9em;
+    }
+
+    .footer a {
+        color: #bb86fc;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+    svg.icon {
+        width: 1.5em;
+        height: 1.5em;
+        margin-right: 0.5em;
+        fill: #bb86fc;
+        vertical-align: middle;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
